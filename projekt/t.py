@@ -254,9 +254,6 @@ class Player(mwm.Actor):
 
     def act(self):
         global d_time
-        # collision (walls and borders)
-        if self.sensing_token(Wall, 1) or self.sensing_borders() != []:
-            self.move_back()
         # taking damage from
         enemy = self.sensing_token(Enemy, 1)
         if enemy:
@@ -274,7 +271,6 @@ class Player(mwm.Actor):
             self.damage_buffer -= d_time
 
     def on_sensing_wall(self, wall):
-        # additional collision to make glitches less common (not perfect)
         self.move_back()
 
     def on_hit(self, damage):
