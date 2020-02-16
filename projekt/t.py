@@ -223,6 +223,8 @@ class Player(mwm.Actor):
         elif "s" in key:
             self.direction = 180
             self.move()
+        if self.sensing_borders():
+            self.move_back()
         # shooting
         if "left" in key:
             self.shoot(-90)
@@ -761,5 +763,5 @@ buyables = [BombItem, Heart, BoostSpeed, BoostFireRate, BoostDamage]
 
 read_levels()
 my_board = MyBoard(res[0], res[1])
-my_board.run(fullscreen=False)
+my_board.run(fullscreen=True)
 
